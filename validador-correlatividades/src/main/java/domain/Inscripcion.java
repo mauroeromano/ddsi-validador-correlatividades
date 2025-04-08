@@ -5,6 +5,12 @@ public class Inscripcion {
     private Alumno alumno;
     private List<Materia> materias;
 
+    public boolean aprobada(){
+        return materias.stream()
+                .allMatch(m -> m.getCorrelativas().stream()
+                .allMatch(c -> alumno.aprobo(c)));
+    }
+
     public Inscripcion(Alumno alumno, List<Materia> materias) {
         this.alumno = alumno;
         this.materias = materias;
